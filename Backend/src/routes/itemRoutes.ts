@@ -24,4 +24,34 @@ router.post("/create", async (req, res) => {
     res.status(500).send("Couldn't Create Item");
   }
 });
+router.get("/", async (req, res) => {
+  try {
+    const allItems = await itemService.getAllItems();
+    res.json(allItems);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Couldn't Get any Item");
+  }
+});
+router.get("/:category", async (req, res) => {
+  try {
+    const category = req.params.category;
+    const allItems = await itemService.getItemsByCategory(category);
+    res.json(allItems);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Couldn't Get any Item");
+  }
+});
+router.get("/:name/count", async (req, res) => {
+  try {
+    const name= req.params.name;
+    console.log("Name:",name)
+    const count = await itemService.getItemsCountByName(name);
+    res.json(count);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Count Error");
+  }
+});
 export default router;

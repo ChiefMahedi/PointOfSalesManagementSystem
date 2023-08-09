@@ -1,5 +1,8 @@
+import { Customer } from "./customer";
+//Item Entity
 export class Item
 {
+    id?: string;
     name: string;
     quantity: number;
     price: number;
@@ -26,6 +29,7 @@ export class Item
         amount: number;
     }[];
     relatedItems?: string[];
+    paymentBy?: Customer;
     constructor(name: string, quantity: number, price: number, category: string, manufacturer: string) {
         this.name = name;
         this.quantity = quantity;

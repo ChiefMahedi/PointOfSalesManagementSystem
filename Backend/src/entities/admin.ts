@@ -1,6 +1,5 @@
-import { Item } from "./item";
-//Customer Entity
-export class Customer
+//Admin Entity
+export class Admin
 {
     id?: string;
     name : string;
@@ -9,7 +8,6 @@ export class Customer
     address: string;
     phone: string;
     registrationDate: Date;
-    cart? : Item["id"];
     constructor(
         name: string,
         email: string,

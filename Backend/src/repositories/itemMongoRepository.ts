@@ -1,8 +1,11 @@
 import { Item } from "../entities/item";
+import { Transaction } from "entities/transaction";
+
 import { IItemRepository } from "./itemRepository";
+
 import connectAndInitializeDb from "../mongoDB/connection";
 import { Db, WithId } from "mongodb";
-import { Transaction } from "entities/transaction";
+
 
 export class MongoItemRepository implements IItemRepository {
   private db: Db | null = null;
@@ -11,7 +14,7 @@ export class MongoItemRepository implements IItemRepository {
       this.db = initializedDb;
     });
   }
-
+ //To get all the items in the inventory collection
   async getAllItems(): Promise<Item[]> {
     if (!this.db) {
       throw new Error("Database not initialized");
@@ -29,7 +32,8 @@ export class MongoItemRepository implements IItemRepository {
     throw new Error("Method not implemented.");
   }
 
-  async getItemsByCategory(category: string): Promise<Item[]> {
+  //Get all the items with same category
+  async getItemsByCategory(category: Item["category"]): Promise<Item[]> {
     if (!this.db) {
       throw new Error("Database not initialized");
     }
@@ -42,6 +46,7 @@ export class MongoItemRepository implements IItemRepository {
     return items;
   }
 
+  //Get the number of items with the same name
   async getItemsCountByName(name: string): Promise<number> {
     if (!this.db) {
       throw new Error("Database not initialized");
@@ -51,6 +56,7 @@ export class MongoItemRepository implements IItemRepository {
     return count;
   }
 
+  //Create one item
   async createOneItem(item: Item): Promise<Item> {
     if (!this.db) {
       throw new Error("Database not initialized");
@@ -69,7 +75,7 @@ export class MongoItemRepository implements IItemRepository {
 
     return newItem;
   }
-
+  //Not needed right now
   buyItem(id: string): Promise<Transaction> {
     throw new Error("Method not implemented.");
   }

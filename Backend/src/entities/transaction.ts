@@ -1,9 +1,9 @@
 import { Customer } from "./customer";
 import { Item } from "./item";
-
+//Transaction Entity
 export class Transaction {
-    transactionId: string;
-    customer: Customer;
+    id?: string;
+    customerName: Customer["name"];
     items: Item[];
     transactionDate: Date;
     totalAmount: number;
@@ -11,8 +11,7 @@ export class Transaction {
     customerEmail : Customer["email"];
     customerAddress: Customer["address"];
     constructor(
-        transactionId: string,
-        customer: Customer,
+        customer: Customer["name"],
         items: Item[],
         transactionDate: Date,
         totalAmount: number,
@@ -20,8 +19,7 @@ export class Transaction {
         customerEmail : Customer["email"],
         customerAddress: Customer["address"]
     ) {
-        this.transactionId = transactionId;
-        this.customer = customer;
+        this.customerName = customer;
         this.items = items;
         this.transactionDate = transactionDate;
         this.totalAmount = totalAmount;
